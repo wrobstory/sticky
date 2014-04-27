@@ -1,0 +1,6 @@
+include *.md
+include *.txt
+
+recursive-include sticky *.css
+recursive-include sticky *.js
+recursive-include sticky/templates *
