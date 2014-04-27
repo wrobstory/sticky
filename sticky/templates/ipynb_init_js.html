@@ -2,9 +2,21 @@
 
  function load_sticky_libs(){
     console.log('Loading Sticky libraries...')
-    $.getScript('https://wrobstory.github.io/micropolar/micropolar.js', function(){
-      console.log('micropolar loaded...')
-    })
+    libs = {
+      'd3plus': 'http://wrobstory.github.io/d3plus/d3plus.js',
+      'micropolar': 'https://wrobstory.github.io/micropolar/micropolar.js'
+    }
+    lib_names = Object.keys(libs)
+    for (var i=0; i < lib_names.length; i++){
+      lib_name = lib_names[i];
+      if (window[lib_name] === undefined){
+        function getscript(lib_name){
+          $.getScript(libs[lib_name], function(){
+            console.log(lib_name + " loaded...")
+        })};
+        getscript(lib_name)
+      }
+    }
   };
 
  if(typeof define === "function" && define.amd){
@@ -27,7 +39,9 @@
             window.d3 = d3;
             load_sticky_libs();
         });
-      }
+      } else {
+          load_sticky_libs();
+      };
 
  }else{
       console.log('Require.js not found!');
