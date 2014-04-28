@@ -2,41 +2,33 @@
 
 require(["widgets/js/widget"], function(WidgetManager){
 
+    function build_chart(chart, model){
+              var chart_id = '.' + model.get('chart_id');
+              chart
+              .container(chart_id)
+              .height(model.get('model_height'))
+              .width(model.get('model_width'))
+              .data(model.get('model_data'))
+              .type(model.get('chart_type'))
+              .id(model.get('model_key'))
+              .text(model.get('model_key'))
+              .y(model.get('model_y'))
+              .x(model.get('model_x'));
+    }
+
     // Define the DOM Rendering View
     var D3PlusRenderer = IPython.DOMWidgetView.extend({
         render: function(){
-            debugger
-            var chart_id = '.' + this.model.get('chart_id');
-            var sample_data = [
-              {"year": 1991, "name":"alpha", "value": 15},
-              {"year": 1992, "name":"alpha", "value": 20},
-              {"year": 1994, "name":"alpha", "value": 30},
-              {"year": 1995, "name":"alpha", "value": 60},
-              {"year": 1993, "name":"beta", "value": 40},
-              {"year": 1994, "name":"beta", "value": 60},
-              {"year": 1995, "name":"beta", "value": 10},
-              {"year": 1994, "name":"gamma", "value": 35},
-              {"year": 1995, "name":"gamma", "value": 40}
-            ];
-
-            // instantiate d3plus
-            this.$d3plus_chart = d3plus.viz()
-              .container(chart_id)
-              .height(this.model.get('height'))
-              .width(this.model.get('width'))  // container DIV to hold the visualization
-              .data(sample_data)  // data to use with the visualization
-              .type("line")       // visualization type
-              .id("name")         // key for which our data is unique on
-              .text("name")       // key to use for display text
-              .y("value")         // key to use for y-axis
-              .x("year")          // key to use for x-axis
-              .draw();             // finally, draw the visualization!
+            // Instantiate d3plus
+            this.$d3plus_chart = d3plus.viz();
+            // Build chart from model params
+            build_chart(this.$d3plus_chart, this.model);
+            // Draw
+            this.$d3plus_chart.draw();
         },
 
         update: function(){
-            this.$d3plus_chart
-                .width(this.model.get('width'))
-                .height(this.model.get('height'));
+            build_chart(this.$d3plus_chart, this.model);
             this.$d3plus_chart.draw();
         }
     });

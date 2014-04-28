@@ -40,9 +40,8 @@ class StickyDOMWidget(widgets.DOMWidget):
 
 class Chart(object):
 
-    def _get_dom_creator(self):
+    def _get_dom_widget(self):
         """Instance of MicropolarDOM"""
-        self.chart_id = '_'.join([self.kind, uuid4().hex])
         dom_widget = StickyDOMWidget()
         dom_widget.chart_id = self.chart_id
         return dom_widget
@@ -55,14 +54,16 @@ class Chart(object):
 
     def update(self, **kwargs):
         """Update View Model with given keywords"""
-        for k, v in kwargs.items():
-            setattr(self, k, v)
+        self._set_chart_attrs(**kwargs)
         self.send_state()
 
     def plot(self):
         """Plot Sticky chart"""
         def render_chart(widget, **kwargs):
             display(self)
-        dom_renderer = self._get_dom_creator()
-        dom_renderer.on_displayed(render_chart)
-        display(dom_renderer)
+
+        self.chart_id = '_'.join([self.kind, uuid4().hex])
+        self.init_widget_js()
+        dom_widget = self._get_dom_widget()
+        dom_widget.on_displayed(render_chart)
+        display(dom_widget)
