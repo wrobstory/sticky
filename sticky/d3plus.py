@@ -23,7 +23,7 @@ class d3Plus(widgets.DOMWidget, Chart):
     chart_id = Unicode(sync=True)
     chart_type = Unicode(sync=True)
     model_data = List(sync=True)
-    model_key = Unicode(sync=True)
+    model_key = List(sync=True)
     model_x = Unicode(sync=True)
     model_y = Unicode(sync=True)
     model_height = Int(sync=True)
@@ -57,6 +57,21 @@ class d3Plus(widgets.DOMWidget, Chart):
     def line(self, **kwargs):
         """Line chart"""
         self.chart_type = 'line'
+        self._set_chart_attrs(**kwargs)
+        return self
+
+    def stacked_area(self, **kwargs):
+        """Stacked Area Chart"""
+        self.chart_type = 'stacked'
+        self._set_chart_attrs(**kwargs)
+        return self
+
+    def grouped_scatter(self, groupby=None, **kwargs):
+        """Grouped scatter chart"""
+        if not groupby:
+            raise ValueError('Must provide groupby key!')
+        self.chart_type = 'chart'
+        self.groupby = groupby
         self._set_chart_attrs(**kwargs)
         return self
 
@@ -106,6 +121,9 @@ class d3Plus(widgets.DOMWidget, Chart):
         -----------
         key: str
         """
-        self.model_key = key
+        if hasattr(self, 'groupby'):
+            self.model_key = [self.groupby, key]
+        else:
+            self.model_key = [key]
         return self
 
