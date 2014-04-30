@@ -30,14 +30,10 @@ class d3Plus(widgets.DOMWidget, Chart):
     model_width = Int(sync=True)
 
     def __init__(self, height=250, width=250, *args, **kwargs):
-        """Micropolar D3 Library Widget
+        """D3Plus Library Widget
 
         Parameters
         ----------
-        data: Series, DataFrame, List of Dicts
-        orient: str
-            Data orientation, one of 'wide' or 'long'. Wide data will be melted
-            into long format.
         height: int
         width: int
         **kwargs: d3plus params
@@ -47,12 +43,6 @@ class d3Plus(widgets.DOMWidget, Chart):
         # Visualization params
         self.height = height
         self.width = width
-
-    def _set_chart_attrs(self, **kwargs):
-        """Set chart k with value v"""
-        for k, v in kwargs.items():
-            model_name = '_'.join(['model', k])
-            setattr(self, model_name, v)
 
     def line(self, **kwargs):
         """Line chart"""
@@ -76,7 +66,7 @@ class d3Plus(widgets.DOMWidget, Chart):
         return self
 
     def data(self, data):
-        """Dataset: Pandas DataFrame/Series, or List of Dicts (long format)"""
+        """List of Dicts (long format)"""
         self.model_data = data
         return self
 

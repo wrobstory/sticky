@@ -52,6 +52,12 @@ class Chart(object):
         display(Javascript(dom_template.render()))
         display(Javascript(self.render_template.render()))
 
+    def _set_chart_attrs(self, **kwargs):
+        """Set chart k with value v"""
+        for k, v in kwargs.items():
+            model_name = '_'.join(['model', k])
+            setattr(self, model_name, v)
+
     def update(self, **kwargs):
         """Update View Model with given keywords"""
         self._set_chart_attrs(**kwargs)
