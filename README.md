@@ -8,7 +8,7 @@ Sticky is a framework for easily integrating IPython widgets with D3 libraries.
 
 Why
 -------
-Because the IPython widgets and comms give us a very convenience communication layer between Python and D3. This allows for dynamic data upating and potential for other fun things, like linked charts where the data filtering happens in Python.
+Because the IPython widgets and comms give us a very powerful communication layer between Python and D3. This allows for dynamic data updating and the potential for other fun things, such as linked chart brushing where brush events trigger Python data filtering. 
 
 Status
 -------
