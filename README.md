@@ -15,3 +15,7 @@ Status
 The most alpha of alpha. There are no tests yet. d3plus charts have strange updating behavior. 
 
 Experimentation invited, production highly discouraged. 
+
+So what can I do with this thing?
+---------------------------------
+Go run the [example notebook](https://github.com/wrobstory/sticky/blob/master/examples/sticky_examples.ipynb). Make some charts with the integrated libraries. Read the code. Add new libraries! 
