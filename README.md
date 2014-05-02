@@ -1,5 +1,7 @@
 #Sticky
 
+![StickyLogo](https://farm6.staticflickr.com/5456/14112342583_9d02d45c70_n.jpg)
+
 ###D3 + IPython widgets
 
 Sticky is a framework for easily integrating IPython widgets with D3 libraries. 
