@@ -1,10 +1,3 @@
-sticky
-======
-
-Render D3 with IPython widgets. 
-
-## Status
-
 #Sticky
 
 ###D3 + IPython widgets
