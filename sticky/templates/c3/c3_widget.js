@@ -18,7 +18,6 @@ require(["widgets/js/widget"], function(WidgetManager){
                 };
               return spec;
     }
-
     // Define the DOM Rendering View
     var C3Renderer = IPython.DOMWidgetView.extend({
         render: function(){

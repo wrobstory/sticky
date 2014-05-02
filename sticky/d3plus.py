@@ -4,6 +4,8 @@ D3Plus:
 http://d3plus.org/
 https://github.com/alexandersimoes/d3plus
 """
+import json
+
 from IPython.html import widgets
 from IPython.utils.traitlets import Unicode, Int, List
 from jinja2 import Environment, PackageLoader
@@ -22,7 +24,7 @@ class d3Plus(widgets.DOMWidget, Chart):
     _view_name = Unicode('D3Plus', sync=True)
     chart_id = Unicode(sync=True)
     chart_type = Unicode(sync=True)
-    model_data = List(sync=True)
+    model_data = Unicode(sync=True)
     model_key = List(sync=True)
     model_x = Unicode(sync=True)
     model_y = Unicode(sync=True)
@@ -67,7 +69,7 @@ class d3Plus(widgets.DOMWidget, Chart):
 
     def data(self, data):
         """List of Dicts (long format)"""
-        self.model_data = data
+        self.model_data = json.dumps(data)
         return self
 
     def height(self, height):

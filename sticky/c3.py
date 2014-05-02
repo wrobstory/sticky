@@ -59,13 +59,13 @@ class C3(widgets.DOMWidget, Chart):
         ----------
         x: str
         """
-        import ipdb;ipdb.set_trace()
+        # import ipdb;ipdb.set_trace()
         if self.raw_data is None:
             raise ValueError('Data must be applied before specifying x')
-        grouped = self.raw_data.groupby(x)
-        for k, v in grouped.groups.items():
-            v.insert(0, k)
-            self.model_data.append(v)
+        # grouped = self.raw_data.groupby(x)
+        # for k, v in grouped.groups.items():
+        #     v.insert(0, k)
+        #     self.model_data.append(v)
         self.model_x = x
         if timeseries:
             self.model_x_axis_type = 'timeseries'

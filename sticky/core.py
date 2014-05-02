@@ -9,6 +9,7 @@ Python + IPython + D3
 from __future__ import print_function
 from __future__ import division
 
+import json
 from uuid import uuid4
 
 from IPython.core.display import display, Javascript
@@ -28,8 +29,10 @@ def initialize_notebook():
         print("IPython Notebook could not be loaded.")
 
     lib_js = ENV.get_template('ipynb_init_js.html')
+    lib_css = ENV.get_template('ipynb_init_css.html')
 
     display(HTML(lib_js.render()))
+    display(HTML(lib_css.render()))
 
 
 class StickyDOMWidget(widgets.DOMWidget):
@@ -55,6 +58,8 @@ class Chart(object):
     def _set_chart_attrs(self, **kwargs):
         """Set chart k with value v"""
         for k, v in kwargs.items():
+            if k == 'data':
+                v = json.dumps(v)
             model_name = '_'.join(['model', k])
             setattr(self, model_name, v)
 
