@@ -18,5 +18,6 @@ setup(
                  'Programming Language :: Python :: 2.7',
                  'License :: OSI Approved :: MIT License'],
     packages=['sticky'],
-    package_data={'sticky': ['*.js', '*.css', '*.html', '*.txt']}
+    include_package_data=True,
+    package_data={'': ['*.js', '*.css', '*.html', '*.txt']}
 )
