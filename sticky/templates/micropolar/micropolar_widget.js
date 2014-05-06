@@ -1,18 +1,4 @@
-//Micropolar Library DOM Creator and Renderer
-
-require(["widgets/js/widget"], function(WidgetManager){
-
-    // Define the DOM Cration View For Micropolar
-    var MicropolarDOM = IPython.DOMWidgetView.extend({
-        render: function(){
-            var chart_id = this.model.get('chart_id');
-            var chart_elm = '<div class="' + chart_id + '"></div>';
-            $(chart_elm).appendTo(this.$el);
-        },
-    });
-    // Register the DOM Renderer with the Widget Manager
-    WidgetManager.register_widget_view('MicropolarDOM', MicropolarDOM);
-});
+//Micropolar Library Renderer
 
 require(["widgets/js/widget"], function(WidgetManager){
 
@@ -24,8 +10,8 @@ require(["widgets/js/widget"], function(WidgetManager){
             this.$plot_config = {
                 geometry: polarPlot,
                 data: [[0, 500], [1, 1000], [3, 2000]],
-                height: this.model.get('height'),
-                width: this.model.get('width'),
+                height: this.model.get('model_height'),
+                width: this.model.get('model_width'),
                 angularDomain: [0, 2000],
                 angularTicksStep: 400,
                 minorTicks: 1,

@@ -21,12 +21,12 @@ class Micropolar(widgets.DOMWidget, Chart):
 
     _view_name = Unicode('Micropolar', sync=True)
     chart_id = Unicode(sync=True)
-    height = Int(sync=True)
-    width = Int(sync=True)
+    model_height = Int(sync=True)
+    model_width = Int(sync=True)
 
     def __init__(self, height=250, width=250, *args, **kwargs):
         """Micropolar D3 Library Widget"""
         super(Micropolar, self).__init__(*args, **kwargs)
-        self.height = height
-        self.width = width
+        self.model_height = height
+        self.model_width = width
         self.init_widget_js()
