@@ -3,9 +3,7 @@
  function load_sticky_libs(){
     console.log('Loading Sticky libraries...')
     libs = {
-      'd3plus': 'http://wrobstory.github.io/d3plus/d3plus.js',
-      'micropolar': 'http://wrobstory.github.io/micropolar/micropolar.js',
-      'c3': 'http://wrobstory.github.io/c3/c3.js'
+      'micropolar': 'http://wrobstory.github.io/micropolar/micropolar.js'
     }
     lib_names = Object.keys(libs)
     for (var i=0; i < lib_names.length; i++){
@@ -23,10 +21,11 @@
  if(typeof define === "function" && define.amd){
       var load_paths = {
         paths: {
-          d3: 'http://d3js.org/d3.v3.min'
+          d3: '//d3js.org/d3.v3.min',
+          c3: '//cdnjs.cloudflare.com/ajax/libs/c3/0.4.9/c3.min'
         }
       };
-      var libs = ['d3'];
+      var libs = ['d3', 'c3'];
       for (var i=0; i < libs.length; i++){
         lib = libs[i]
         if (window[lib] !== undefined){
@@ -44,7 +43,7 @@
           load_sticky_libs();
       };
 
- }else{
+ } else {
       console.log('Require.js not found!');
       throw "Require.js not found!"
  };

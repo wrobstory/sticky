@@ -1,9 +1,9 @@
 //Micropolar Library Renderer
 
-require(["widgets/js/widget"], function(WidgetManager){
+require(["widgets/js/widget", "widgets/js/manager"], function(widget, manager){
 
     // Define the DOM Rendering View
-    var MicropolarRender = IPython.DOMWidgetView.extend({
+    var MicropolarRender = widget.DOMWidgetView.extend({
         render: function(){
             var chart_id = '.' + this.model.get('chart_id');
             var polarPlot = micropolar.DotPlot();
@@ -33,5 +33,5 @@ require(["widgets/js/widget"], function(WidgetManager){
         }
     });
     // Register the DOM Rendering View
-    WidgetManager.register_widget_view('Micropolar', MicropolarRender);
+    manager.WidgetManager.register_widget_view('Micropolar', MicropolarRender);
 });
